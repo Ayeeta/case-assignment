@@ -1,4 +1,5 @@
-<form class="" action="" method="POST" enctype="multipart/form-data">
+<form class="" action="/data" method="POST" enctype="multipart/form-data">
     <input type="file" name="upload_file" value="" accept=".csv">
     <input type="submit" name="" value="Submit">
 </form>
+{{data | safe}}

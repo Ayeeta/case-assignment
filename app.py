@@ -8,13 +8,13 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/data', methods=['GET', 'POST'])
 def data():
     if request.method == 'POST':
         uploadedFile = request.files['upload_file']
         if uploadedFile != '':        
             data = pd.read_csv(uploadedFile)
-            return render_template("data.html", data=data.to_html())
+            return render_template("index.html", data=data.to_html())
 
 if __name__ == "__main__":
     app.run(debug=True)
