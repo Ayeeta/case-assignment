@@ -16,7 +16,10 @@
         <input type="file" name="upload_file" value="" accept=".csv">
         <input type="submit" name="" value="Submit">
     </form>
-    {{data_frame | safe}}
+    <div class="overflow-auto mt-1">
+        {{data_frame | safe}}
+    </div>
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
