@@ -14,7 +14,9 @@ def data():
         uploadedFile = request.files['upload_file']
         if uploadedFile != '':        
             data = pd.read_csv(uploadedFile)
-            return render_template("index.html", data=data.to_html())
+            columns = ['Order Date', 'Order Priority', 'Units Sold', 'Unit Price', 'Total Cost', 'Total Revenue', 'Item Type']
+            data_frame = pd.DataFrame(data, columns=columns)
+            return render_template("index.html", data_frame=data_frame.to_html())
 
 if __name__ == "__main__":
     app.run(debug=True)
