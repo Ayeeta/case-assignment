@@ -15,16 +15,18 @@
 </head>
 
 <body class="container-fluid">
-    <h4>Records Table</h4>    
-    <div class="mt-4">        
+    <h4>Dash Board</h4>    
+    <div class="mt-4">
         <div class="row">
             <div class="col-12 col-md-8">                             
-                {{df | safe}}                
+                
+                <label for="startDate">Select Date From:</label>
+                <input type="date" id="startDate" name="startDate">
+                <label for="toDate">To:</label>
+                <input type="date" id="toDate" name="toDate">             
             </div>
             <div class="col-6 col-md-4 d-inline">
-                <form class="" action="/dashboard" method="">
-                <button type="button" class="btn btn-primary">Mini Dashboard</button>
-                </form>                
+                
             </div>
         </div>
     </div>

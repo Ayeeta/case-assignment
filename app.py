@@ -19,5 +19,7 @@ def data():
             df = data_frame.head(10)
             return render_template("data.html", df=df.to_html(classes="table table-striped"))
 
+
+
 if __name__ == "__main__":
     app.run(debug=True)
