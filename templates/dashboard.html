@@ -15,16 +15,29 @@
 </head>
 
 <body class="container-fluid">
-    <h4>Records Table</h4>    
-    <div class="mt-4">        
+    <h4>{{pageTitle | safe}}</h4>    
+    <div class="mt-4">
         <div class="row">
             <div class="col-12 col-md-8">                             
-                {{df | safe}}                
+                <form class="" action="/dashboard" method="POST" enctype="multipart/form-data">
+                <label for="startDate">Select Date From:</label>
+                <input type="date" id="startDate" name="startDate" required>
+                <label for="toDate">To:</label>
+                <input type="date" id="toDate" name="toDate" required>
+                <input type="submit" name="Load" value="Load">
+            </form>             
             </div>
             <div class="col-6 col-md-4 d-inline">
-                <form class="" action="/dashboard" method="POST">
-                <button type="submit" class="btn btn-primary" name="mini_dashboard" value="mini_dashboard">Mini Dashboard</button>
-                </form>                
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-8">  
+                Total Profit: {{totalProfit | safe}}<br/>
+                Top Five Profitable Item Types<br/>                          
+                {{pItems | safe}}   
+            </div>
+            <div class="col-6 col-md-4 d-inline">            
             </div>
         </div>
     </div>
