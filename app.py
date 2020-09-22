@@ -19,7 +19,12 @@ def data():
             df = data_frame.head(10)
             return render_template("data.html", df=df.to_html(classes="table table-striped"))
 
-
+@app.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    if request.method == 'POST':
+        if request.form.get("mini_dashboard"):
+            pageHeader = 'Mini Dash Board'
+            return render_template("dashboard.html", pageHeader=pageHeader)
 
 if __name__ == "__main__":
     app.run(debug=True)
