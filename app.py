@@ -4,7 +4,7 @@ import pandas as pd
 import datetime as dt
 
 app = Flask(__name__)
-df = pd.DataFrame(columns=['Order Date'])
+dataF = pd.DataFrame(columns=['Order Date'])
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -15,11 +15,12 @@ def index():
 def data():
     if request.method == 'POST':
         uploadedFile = request.files['upload_file']
-        if uploadedFile != '':        
-            data = pd.read_csv(uploadedFile)
+        if uploadedFile != '':  
+            global dataF      
+            dataF = pd.read_csv(uploadedFile)  
+            dataF.head(10)          
             columns = ['Order Date', 'Order Priority', 'Units Sold', 'Unit Price', 'Total Cost', 'Total Revenue', 'Item Type']
-            data_frame = pd.DataFrame(data, columns=columns)
-            global df
+            data_frame = pd.DataFrame(dataF, columns=columns)            
             df = data_frame.head(10)
             return render_template("data.html", df=df.to_html(classes="table table-striped"))
 
@@ -32,12 +33,14 @@ def dashboard():
         if request.form.get("Load"):
             strDate = request.form['startDate']
             endDate = request.form['toDate']            
-            global df
-            df['Order Date'] = pd.to_datetime(df['Order Date']) 
-            mask = (df['Order Date'] > strDate) & (df['Order Date'] <= endDate)
-            dateRangeResult = df.loc[mask]
+            global dataF  
+
+            dataF['Order Date'] = pd.to_datetime(dataF['Order Date']) 
+            mask = (dataF['Order Date'] > strDate) & (dataF['Order Date'] <= endDate)
+            dateRangeResult = dataF.loc[mask]
+            totalProfit = dateRangeResult['Total Profit'].sum()
            
-            return render_template("dashboard.html", dateRangeResult=dateRangeResult.to_html())
+            return render_template("dashboard.html", totalProfit=totalProfit)
 
 if __name__ == "__main__":
     app.run(debug=True)
