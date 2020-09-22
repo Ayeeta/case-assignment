@@ -16,7 +16,8 @@ def data():
             data = pd.read_csv(uploadedFile)
             columns = ['Order Date', 'Order Priority', 'Units Sold', 'Unit Price', 'Total Cost', 'Total Revenue', 'Item Type']
             data_frame = pd.DataFrame(data, columns=columns)
-            return render_template("index.html", data_frame=data_frame.to_html())
+            df = data_frame.head(10)
+            return render_template("data.html", df=df.to_html(classes="table table-striped"))
 
 if __name__ == "__main__":
     app.run(debug=True)
