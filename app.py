@@ -17,8 +17,8 @@ def data():
         uploadedFile = request.files['upload_file']
         if uploadedFile != '':  
             global dataF      
-            dataF = pd.read_csv(uploadedFile)  
-            dataF.head(10)          
+            dataF = pd.read_csv(uploadedFile) 
+                      
             columns = ['Order Date', 'Order Priority', 'Units Sold', 'Unit Price', 'Total Cost', 'Total Revenue', 'Item Type']
             data_frame = pd.DataFrame(dataF, columns=columns)            
             df = data_frame.head(10)
@@ -39,8 +39,16 @@ def dashboard():
             mask = (dataF['Order Date'] > strDate) & (dataF['Order Date'] <= endDate)
             dateRangeResult = dataF.loc[mask]
             totalProfit = dateRangeResult['Total Profit'].sum()
-           
-            return render_template("dashboard.html", totalProfit=totalProfit)
+            columns = ['Item Type', 'Total Profit']
+            valuableItems = pd.DataFrame(dateRangeResult, columns=columns)
+
+            groupedItems = valuableItems.groupby(['Item Type']).sum()
+
+            profitableItemTypes = groupedItems.sort_values(by='Total Profit', ascending=False)
+            pItems = profitableItemTypes.head()
+            # pItems = groupedItems.head()
+            
+            return render_template("dashboard.html", totalProfit=totalProfit, pItems=pItems.to_html())
 
 if __name__ == "__main__":
     app.run(debug=True)

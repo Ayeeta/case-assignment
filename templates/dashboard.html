@@ -32,10 +32,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-8">                             
-                {{totalProfit | safe}}            
+            <div class="col-12 col-md-8">  
+                Total Profit: {{totalProfit | safe}}<br/>
+                Top Five Profitable Item Types<br/>                          
+                {{pItems | safe}}   
             </div>
-            <div class="col-6 col-md-4 d-inline"></div>
+            <div class="col-6 col-md-4 d-inline">            
+            </div>
         </div>
     </div>
 
