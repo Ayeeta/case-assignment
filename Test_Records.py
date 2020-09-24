@@ -39,4 +39,8 @@ class TestRecords(unittest.TestCase):
         index = len(dataframe.index)
         self.assertEquals(0, index)
 
+    def test_summarizedData_returns_data_frame(self):
+        result = self.records.summarizedData()
+        self.assertIsInstance(result, pd.DataFrame)
+
     
