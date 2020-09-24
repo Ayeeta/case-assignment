@@ -35,4 +35,5 @@ class Records(object):
         ItemTypes = pd.DataFrame(self.date_range, columns=columns)
         groupedProfitableItems = ItemTypes.groupby(['Item Type']).sum()
         profitableItemTypes = groupedProfitableItems.sort_values(by='Total Profit', ascending=False)
+        pd.options.display.float_format = '{:.2f}'.format        
         return profitableItemTypes.head()
