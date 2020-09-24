@@ -36,9 +36,7 @@ def dashboard():
             endDate = request.form['toDate']
             totalProfit = records.loadDateRangeTotalProfit(strDate, endDate) 
             profitableItemTypes = records.loadTop5ProfitableItems()
-
             dateRange = records.showDateRange(strDate, endDate)
-
             df = records.showTable()
             return render_template('dashboard.html',dateRange=dateRange, pageTitle=pageTitle, df=df.to_html(classes="table table-striped"), totalProfit=totalProfit, profitableItemTypes=profitableItemTypes.to_html(classes="table table-striped"))
 
