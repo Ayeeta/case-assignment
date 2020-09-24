@@ -15,11 +15,21 @@
 </head>
 
 <body class="container">
-    <h4>Upload csv File</h4>
-    <form class="" action="/data" method="POST" enctype="multipart/form-data">
-        <input type="file" name="upload_file" value="" accept=".csv" required>
-        <input type="submit" name="" value="Submit">
-    </form> 
+    <div class="d-flex align-items-center justify-content-center" style="height: 350px; margin-top: 100px">
+        <div class="p-2 bd-highlight col-example"></div>
+        <div class="p-2 bd-highlight col-example">
+            <h4 class="p-2 bd-highlight align-middle col-example text-center display-4">Upload csv File</h4>
+            <hr>
+            <form class="" action="/data" method="POST" enctype="multipart/form-data">
+                <input type="file"  name="upload_file" value="" accept=".csv" required>
+                <input type="submit" class="btn btn-outline-secondary btn-sm" name="" value="Submit">
+            </form>
+        </div>
+        <div class="p-2 bd-highlight col-example"></div>
+      </div>
+
+    </div>
+     
 
 
     <!-- Optional JavaScript -->
