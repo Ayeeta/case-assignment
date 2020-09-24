@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, make_response
 from werkzeug.utils import secure_filename
 from classes.Records import Records
     
@@ -42,5 +42,22 @@ def dashboard():
             df = records.showTable()
             return render_template('dashboard.html',dateRange=dateRange, pageTitle=pageTitle, df=df.to_html(classes="table table-striped"), totalProfit=totalProfit, profitableItemTypes=profitableItemTypes.to_html(classes="table table-striped"))
 
+@app.errorhandler(404)
+def page_not_found(e):
+    """Page not found"""
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(400)
+def bad_request(e):
+    """Bad request."""
+    return render_template('400.html'), 400
+
+
+@app.errorhandler(500)
+def server_error(e):    
+        """Internal server error."""
+        return render_template('500.html'), 500
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
