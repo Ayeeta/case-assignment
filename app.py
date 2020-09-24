@@ -19,8 +19,7 @@ def index():
 def data():
     if request.method == 'POST':
         uploadedFile = request.files['upload_file']
-        if uploadedFile != '': 
-            
+        if uploadedFile != '':             
             records.loadAllColumnsTable(uploadedFile)
             df = records.showTable()
             return render_template("data.html", df=df.to_html(classes="table table-striped"))
@@ -29,16 +28,19 @@ def data():
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     if request.method == 'POST':
-        if request.form.get("mini_dashboard"):
-            pageTitle = 'Mini Dash Board'
-            # return render_template("dashboard.html", pageTitle=pageTitle)
-            return redirect(url_for('/'))
+        if request.form.get("upload_file"):
+            return redirect(url_for('/'))        
         if request.form.get("Load"):
+            pageTitle = 'Mini Dash Board'
             strDate = request.form['startDate']
             endDate = request.form['toDate']
             totalProfit = records.loadDateRangeTotalProfit(strDate, endDate) 
             profitableItemTypes = records.loadTop5ProfitableItems()
-            return render_template('dashboard.html', totalProfit=totalProfit, profitableItemTypes=profitableItemTypes.to_html())
+
+            dateRange = records.showDateRange(strDate, endDate)
+
+            df = records.showTable()
+            return render_template('dashboard.html',dateRange=dateRange, pageTitle=pageTitle, df=df.to_html(classes="table table-striped"), totalProfit=totalProfit, profitableItemTypes=profitableItemTypes.to_html(classes="table table-striped"))
 
 if __name__ == "__main__":
     app.run(debug=True)

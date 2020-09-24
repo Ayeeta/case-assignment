@@ -22,9 +22,33 @@
                 {{df | safe}}                
             </div>
             <div class="col-6 col-md-4 d-inline">
-                <form class="" action="/dashboard" method="POST">
-                <button type="submit" class="btn btn-primary" name="mini_dashboard" value="mini_dashboard">Mini Dashboard</button>
-                </form>                
+                <form class="" action="/" method="POST">
+                <button type="submit" class="btn btn-primary" name="mini_dashboard" value="mini_dashboard">Upload File</button>
+                </form> 
+                <div class="row">
+                    <div class="col-12 col-md-8">                             
+                        <form class="" action="/dashboard" method="POST" enctype="multipart/form-data">
+                        <label for="startDate">Select Date From:</label><br>
+                        <input type="date" id="startDate" name="startDate" required><br>
+                        <label for="toDate">To:</label><br>
+                        <input type="date" id="toDate" name="toDate" required><br>
+                        <input class="mt-1" type="submit" name="Load" value="Load">
+                    </form>             
+                    </div>
+                    <div class="col-6 col-md-4 d-inline">
+                        
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-12 col-md-8"> 
+                        <!-- <iframe src="{{ url_for('dashboard') }}" height="200" width="300" title="Iframe Example"></iframe>  -->
+                        <!-- Total Profit: {{totalProfit | safe}}<br/>
+                        Top Five Profitable Item Types<br/>                          
+                        {{pItems | safe}}    -->
+                    </div>
+                    <div class="col-6 col-md-4 d-inline">            
+                    </div>
+                </div>              
             </div>
         </div>
     </div>

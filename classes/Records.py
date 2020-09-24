@@ -25,7 +25,10 @@ class Records(object):
         mask = (self.records['Order Date'] > strDate) & (self.records['Order Date'] <= endDate)
         self.date_range = self.records.loc[mask]        
         totalProfit = self.date_range['Total Profit'].sum()
-        return totalProfit
+        return "{:,.2f}".format(totalProfit)
+    
+    def showDateRange(self, strDate, endDate):
+        return "{} -- {}".format(strDate, endDate)
     
     def loadTop5ProfitableItems(self):
         columns = ['Item Type', 'Total Profit']
