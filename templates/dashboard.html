@@ -33,7 +33,7 @@
                         <input type="date" id="startDate" name="startDate" required><br>
                         <label for="toDate">To:</label><br>
                         <input type="date" id="toDate" name="toDate" required><br>
-                        <input class="mt-1" type="submit" name="Load" value="Load">
+                        <input class="mt-1 btn btn-success" type="submit" name="Load" value="Load">
                     </form>             
                     </div>
                     <div class="col-6 col-md-4 d-inline">
@@ -54,13 +54,20 @@
                 </div>              
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-md-8">  
-                  
+        <div class="mt-4 row container">
+            <div class="">
+                <b>Data Summary</b><br>
+                {{dataSummary | safe}}
             </div>
-            <div class="col-6 col-md-4 d-inline">            
+            <div class="">            
             </div>
         </div>
+        <div class="row">
+            <div class="">
+                
+            </div>
+        </div>
+        
     </div>
 
 

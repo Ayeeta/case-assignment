@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response
 from werkzeug.utils import secure_filename
 from classes.Records import Records
-    
+import plotly.graph_objects as go    
 import pandas as pd
-import datetime as dt
+
 
 app = Flask(__name__)
 records = Records()
@@ -37,8 +37,11 @@ def dashboard():
             totalProfit = records.loadDateRangeTotalProfit(strDate, endDate) 
             profitableItemTypes = records.loadTop5ProfitableItems()
             dateRange = records.showDateRange(strDate, endDate)
-            df = records.showTable()
-            return render_template('dashboard.html',dateRange=dateRange, pageTitle=pageTitle, df=df.to_html(classes="table table-striped"), totalProfit=totalProfit, profitableItemTypes=profitableItemTypes.to_html(classes="table table-striped"))
+            df = records.showTable() 
+
+            dataSummary = records.summarizedData()
+
+            return render_template('dashboard.html',dateRange=dateRange,pageTitle=pageTitle, df=df.to_html(classes="table table-striped"), totalProfit=totalProfit, profitableItemTypes=profitableItemTypes.to_html(classes="table table-striped"), dataSummary=dataSummary.to_html(classes="table table-striped"))
 
 @app.errorhandler(404)
 def page_not_found(e):

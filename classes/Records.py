@@ -16,8 +16,8 @@ class Records(object):
     def showTable(self):
         columns = ['Order Date', 'Order Priority', 
         'Units Sold', 'Unit Price', 'Total Cost', 'Total Revenue', 'Item Type']
-        data_frame = pd.DataFrame(self.records, columns=columns)
-        return data_frame.head(10)
+        data_frame = pd.DataFrame(self.records, columns=columns)        
+        return data_frame.head(10)   
     
     def loadDateRangeTotalProfit(self, strDate, endDate):
         self.records['Order Date'] = pd.to_datetime(self.records['Order Date'])
@@ -36,3 +36,13 @@ class Records(object):
         profitableItemTypes = groupedProfitableItems.sort_values(by='Total Profit', ascending=False)
         pd.options.display.float_format = '{:.2f}'.format        
         return profitableItemTypes.head()
+
+    def groupedByRegion(self):
+        columns = ['Region', 'Country', 'Order Date', 'Order Priority', 
+        'Units Sold', 'Unit Price', 'Total Cost', 'Total Revenue', 'Item Type']
+        data_frame = pd.DataFrame(self.records, columns=columns) 
+        grouped = data_frame.groupby(by='Region')
+        return grouped.head()
+
+    def summarizedData(self):
+        return self.records.describe()
