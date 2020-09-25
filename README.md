@@ -1,5 +1,7 @@
 # case-assignment
 
+[![Build Status](https://travis-ci.org/Ayeeta/case-assignment.svg?branch=master)](https://travis-ci.org/Ayeeta/case-assignment)
+
 A web-based app where a store manager can upload a .csv file into the system. On uploading the file,
 a tabular display will show the following properties;
 * Order Date 
